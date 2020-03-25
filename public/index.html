@@ -10,72 +10,29 @@
   
 
     <div class="topBar">
-      <input list="availableSerialPorts"  placeholder="Select Serial Port" id="serialPortPathInput">
+      <input list="availableSerialPorts"  placeholder="Select Serial Port" id="serialPortPathInput" value="">
       <datalist id="availableSerialPorts">
-        <option value="/dev/cu.H-C-2010-06-01-DevB">
+        <!-- <option value="/dev/cu.H-C-2010-06-01-DevB">
         <option value="/dev/ttyACM0">
-        <option value="/dev/ttyACM1">
+        <option value="/dev/ttyACM1"> -->
       </datalist>
         
-      <input list="baudRates"  placeholder="Baud Rate" id="baudrateInput">
+      <input list="baudRates"  placeholder="Baud Rate" id="baudrateInput"value="9600">
       <datalist id="baudRates">
         <option value="115200">
         <option value="9600">
       </datalist>
         
       <button type="button" id="btnOpenPort" >Open Serial Port</button>
+      <select id="modus_select">
+        <option value="u">Spannung</option>
+        <option value="i">Strom</option>
+      </select>
     </div>
+    <br>
     
     <div class="monitorArea">
         <ul class="messageList">
-            <li>1111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>11111111111111111111</li>
-                        <li>1111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>11111111111111111111</li>
-                        <li>1111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>11111111111111111111</li>
-                        <li>1111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>11111111111111111111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>1111</li>
-             <li>11111111111111111111</li>
         </ul>    
     </div>
 
@@ -83,7 +40,7 @@
 
 
 
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/main.js"></script>
 </body>

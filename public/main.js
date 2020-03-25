@@ -8,6 +8,7 @@ $(function() {
   var $serialPortPathInput = $('#serialPortPathInput');
   var $baudrateInput = $('#baudrateInput');
   var $messageList = $('.messageList');
+  var $modus_select = $('#modus_select');
 
 
 
@@ -68,7 +69,7 @@ $(function() {
     // var $usernameDiv = $('<span class="username"/>')
     //   .text(data.username)
     //   .css('color', getUsernameColor(data.username));
-    var $messageBodyDiv = $('<span class="messageBody">').text(data);
+    var $messageBodyDiv = $('<span style="font-size: 1000%;" class="messageBody">').text(data);
 
     // var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
@@ -85,8 +86,11 @@ $(function() {
   // options.prepend - If the element should prepend
   //   all other messages (default = false)
   const addMessageElement = (el, options) => {
+    // for(var $c in $messageList[0].childNodes){
+    //   $messageList.removeChild($c);
+    // }
+    $messageList.empty();
     var $el = $(el);
-
     $messageList.append($el);
     
     $messageList[0].scrollTop = $messageList[0].scrollHeight;
@@ -109,8 +113,29 @@ $(function() {
     beginSession();
   });
 
+
+  $modus_select.change(function(){
+    if($modus_select.val() == "u"){
+      socket.emit('writePort', "0");
+    }
+    else if($modus_select.val() == "i"){
+      socket.emit('writePort', "1");
+    }
+  });
+
+
  
   ///////////////////////////////////// Socket events /////////////////////////////////////
+
+  socket.on('serialportlist', (data) => {
+    console.log("received ports");
+    data.forEach((port) => {
+      $('#availableSerialPorts').append('<option value="' +port + '"></option>');
+      console.log("port added: " + port);
+    });
+    $serialPortPathInput.val(data[0]);
+
+  });
 
   // Whenever the server emits 'login', log the login message
   socket.on('session started', (data) => {
@@ -138,7 +163,7 @@ $(function() {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', (data) => {
     addChatMessage(data);
-    console.log(data)
+    //console.log(data)
   });
 
 
